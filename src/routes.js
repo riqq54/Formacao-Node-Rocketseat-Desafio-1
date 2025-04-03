@@ -1,14 +1,16 @@
+import { buildRoutePath } from "./utils/build-route-path"
+
 export const routes = [
     {
         method: 'GET',
-        path: '/tasks',
+        path: buildRoutePath('/tasks'),
         handler: (req, res) => {
             return res.end()
         }
     },
     {
         method: 'DELETE',
-        path: '/tasks/:id',
+        path: buildRoutePath('/tasks/:id'),
         handler: (req, res) => {
             return res.end()
         }
