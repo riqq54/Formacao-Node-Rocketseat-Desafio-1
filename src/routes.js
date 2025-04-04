@@ -90,5 +90,35 @@ export const routes = [
 
             return res.writeHead(204).end()
         }
+    },
+    {
+        method: 'PATCH',
+        path: buildRoutePath('/tasks/:id/complete'),
+        handler: (req, res) => {
+
+            const { id } = req.params
+
+            const [task] = database.select('tasks', {id})
+
+            if (!task) {
+                return res.writeHead(400).end()
+            }
+
+            if (task.completed_at === null) {
+                task.completed_at = new Date()
+            } else {
+                task.completed_at = null
+            }
+
+            database.update('tasks', id, {
+                title: task.title,
+                description: task.description,
+                completed_at: task.completed_at,
+                created_at: task.created_at,
+                updated_at: new Date()
+            })
+
+            return res.writeHead(204).end()
+        }
     }
 ]
