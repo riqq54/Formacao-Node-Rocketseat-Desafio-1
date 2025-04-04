@@ -58,6 +58,10 @@ export const routes = [
 
             const [task] = database.select('tasks', {id})
 
+            if (!task) {
+                return res.writeHead(400).end()
+            }
+
             database.update('tasks', id, {
                 title: title ?? task.title,
                 description: description ?? task.description,
@@ -75,6 +79,12 @@ export const routes = [
         handler: (req, res) => {
 
             const { id } = req.params
+
+            const [task] = database.select('tasks', {id})
+
+            if (!task) {
+                return res.writeHead(400).end()
+            }
 
             database.delete('tasks', id)
 
