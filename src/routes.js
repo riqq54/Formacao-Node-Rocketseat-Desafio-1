@@ -59,7 +59,7 @@ export const routes = [
             const [task] = database.select('tasks', {id})
 
             if (!task) {
-                return res.writeHead(400).end()
+                return res.writeHead(400).end('Registro não encontrado')
             }
 
             database.update('tasks', id, {
@@ -83,7 +83,7 @@ export const routes = [
             const [task] = database.select('tasks', {id})
 
             if (!task) {
-                return res.writeHead(400).end()
+                return res.writeHead(400).end('Registro não encontrado')
             }
 
             database.delete('tasks', id)
@@ -101,7 +101,7 @@ export const routes = [
             const [task] = database.select('tasks', {id})
 
             if (!task) {
-                return res.writeHead(400).end()
+                return res.writeHead(400).end('Registro não encontrado')
             }
 
             if (task.completed_at === null) {
